@@ -8,11 +8,9 @@ LABEL maintainer="Amin Shah Gilani <pars@gilani.me>" \
 # Add sources
 #RUN echo 'deb http://mirrordirector.raspbian.org/raspbian/ buster main' | tee /etc/apt/sources.list.d/svxlink.list
 
-# Install SvxLink
+# Install Dependencies
 RUN apt-get update
-RUN apt-get install -y svxlink-server wget bzip2
-
-
+RUN apt-get install -y wget bzip2 svxlink-server
 
 # Install the English sounds for SvxLink
 RUN cd /usr/share/svxlink/sounds/
@@ -20,6 +18,12 @@ RUN wget https://github.com/sm0svx/svxlink-sounds-en_US-heather/releases/downloa
 RUN tar xvjf svxlink-sounds-en_US-heather-16k-13.12.tar.bz2
 RUN ln -s en_US-heather-16k en_US
 
-# Execute test
+# Copy configuration
+COPY svxlink.conf /etc/svxlink/svxlink.conf
 
-CMD /bin/bash
+# Install pulseaudio
+RUN apt-get install -y pulseaudio
+ENV PULSE_SERVER=docker.for.mac.localhost
+
+# Execute test
+CMD svxlink
