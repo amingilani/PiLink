@@ -11,4 +11,3 @@ To test:
 TODO:
 
 + Forward audio to host via pulseaudio
-+ Fix SvxLink errors for audio files not being found
