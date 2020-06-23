@@ -1,13 +1,23 @@
 # PARS EchoLink
 This EchoLink Node Configuration is based on the [article](http://www.pakhams.com/index.php?option=com_content&view=article&id=178:pi3echolink&catid=45:misc&Itemid=158) by AP2CJ.
 
-Before running, ensure you have [Docker](https://docs.docker.com/get-docker/) installed.
+Before running, ensure you have [Docker](https://docs.docker.com/get-docker/) installed. This build is meant to be deployed to a balenaOS host, and depends on a host with `ALSA`.
 
-To test:
+## Testing
 
-1. Build: `docker build . el`
-2. Run: `docker run -it el`
+Prelude:
+
++ Ensure you have a local development version of balena running
++ Ensure the local host has a USB sound card attached
+
+To test, push to the host with:
+
+```
+balena push $balena_dev_device
+```
+
 
 TODO:
 
-+ Forward audio to host via pulseaudio
++ Finish dev
++ Expose public ports

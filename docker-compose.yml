@@ -1,0 +1,10 @@
+version: '2'
+services:
+  svxlink:
+    build: ./svxlink
+    devices:
+      - "/dev/snd:/dev/snd"
+    expose:
+      - "5198"
+      - "5199"
+      - "5200"

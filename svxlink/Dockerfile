@@ -15,12 +15,11 @@ RUN wget https://github.com/sm0svx/svxlink-sounds-en_US-heather/releases/downloa
 RUN tar xvjf svxlink-sounds-en_US-heather-16k-13.12.tar.bz2
 RUN mv /en_US-heather-16k /usr/share/svxlink/sounds/en_US
 
+# Install pulseaudio
+RUN apt-get install -y alsa-utils
+
 # Copy configuration
 COPY svxlink.conf /etc/svxlink/svxlink.conf
 
-# Install pulseaudio
-RUN apt-get install -y pulseaudio
-ENV PULSE_SERVER=docker.for.mac.localhost
-
 # Execute test
-CMD svxlink
+CMD svxlink svxlink
