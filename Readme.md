@@ -31,6 +31,7 @@ balena push $balena_dev_device
 
 TODO:
 
++ Fix environment variables in intermediate container
 + deploy via balena cloud
 + Finish dev
 + Expose public ports
