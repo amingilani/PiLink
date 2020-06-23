@@ -3,7 +3,16 @@ This EchoLink Node Configuration is based on the [article](http://www.pakhams.co
 
 Before running, ensure you have [Docker](https://docs.docker.com/get-docker/) installed. This build is meant to be deployed to a balenaOS host, and depends on a host with `ALSA`.
 
+Required variables:
+
+- `ECHOLINK_CALL`: Echolink callsign
+- `ECHOLINK_PASS`: Echolink password
+- `DEVICE_CALL`: The call sign assigned to this device
+- `AUTH_KEY`: The auth key for the device
+
 ## Testing
+
+Note that during testing you cannot run Balena Cloud environment variables. Pass them through docker compose or your Dockerfile.
 
 Prelude:
 
@@ -19,5 +28,6 @@ balena push $balena_dev_device
 
 TODO:
 
++ deploy via balena cloud
 + Finish dev
 + Expose public ports

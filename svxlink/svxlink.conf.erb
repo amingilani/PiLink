@@ -19,7 +19,7 @@ TYPE=Simplex
 RX=NONE
 TX=Tx1
 MODULES=ModuleHelp,ModuleParrot,ModuleEchoLink,ModuleTclVoiceMail
-CALLSIGN=SK3W
+CALLSIGN=<%= ENV['DEVICE_CALL'] %>
 SHORT_IDENT_INTERVAL=60
 LONG_IDENT_INTERVAL=60
 #IDENT_ONLY_AFTER_TX=4
@@ -84,7 +84,7 @@ TYPE=Reflector
 HOST=reflector.example.com
 #PORT=5300
 CALLSIGN="MYCALL"
-AUTH_KEY="Change this key now!"
+AUTH_KEY=<%= ENV['AUTH_KEY'] %>
 #JITTER_BUFFER_DELAY=0
 
 [LinkToR4]
@@ -233,7 +233,7 @@ DTMF_SERIAL=/dev/ttyS0
 
 [Tx1]
 TYPE=Local
-AUDIO_DEV=alsa:plughw:1
+AUDIO_DEV=alsa:plughw:0
 AUDIO_CHANNEL=0
 PTT_TYPE=NONE
 PTT_PORT=/dev/ttyS0
