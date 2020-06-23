@@ -1,4 +1,7 @@
 # PARS EchoLink
+
+![BalenaCloud Push](https://github.com/amingilani/pars-echolink/workflows/BalenaCloud%20Push/badge.svg)
+
 This EchoLink Node Configuration is based on the [article](http://www.pakhams.com/index.php?option=com_content&view=article&id=178:pi3echolink&catid=45:misc&Itemid=158) by AP2CJ.
 
 Before running, ensure you have [Docker](https://docs.docker.com/get-docker/) installed. This build is meant to be deployed to a balenaOS host, and depends on a host with `ALSA`.
