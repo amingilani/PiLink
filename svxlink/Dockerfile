@@ -3,10 +3,6 @@
 
 # Build the configuration from a template
 FROM ruby
-COPY ModuleEchoLink.conf.erb ModuleEchoLink.conf.erb
-COPY svxlink.conf.erb svxlink.conf.erb
-RUN erb /ModuleEchoLink.conf.erb > /ModuleEchoLink.conf
-RUN erb /svxlink.conf.erb > /svxlink.conf
 
 FROM debian:buster
 LABEL maintainer="Amin Shah Gilani <pars@gilani.me>" \
@@ -26,9 +22,17 @@ RUN mv /en_US-heather-16k /usr/share/svxlink/sounds/en_US
 # Install pulseaudio
 RUN apt-get install -y alsa-utils
 
-# Copy configuration
-COPY --from=0 /svxlink.conf /etc/svxlink/svxlink.conf
-COPY --from=0 /ModuleEchoLink.conf /etc/svxlink/svxlink.d/ModuleEchoLink.conf
+# Remove remaining files
+RUN rm svxlink-sounds-en_US-heather-16k-13.12.tar.bz2
+
+
+# Install Ruby for templating
+RUN apt-get -y install ruby
+
+# Copy config files
+COPY scripts/compile_config.sh compile_config.sh
+COPY config/ModuleEchoLink.conf.erb ModuleEchoLink.conf.erb
+COPY config/svxlink.conf.erb svxlink.conf.erb
 
 # Execute test
-ENTRYPOINT svxlink
+ENTRYPOINT ./compile_config.sh && svxlink svxlink
