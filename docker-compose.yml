@@ -10,3 +10,7 @@ services:
       - "5198"
       - "5199"
       - "5200"
+  web:
+    image: nginxdemos/hello
+    expose:
+      - "80"
