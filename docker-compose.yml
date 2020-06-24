@@ -1,4 +1,5 @@
 version: '2'
+
 services:
   svxlink:
     build: ./svxlink
@@ -10,7 +11,24 @@ services:
       - "5198"
       - "5199"
       - "5200"
-  web:
-    image: nginxdemos/hello
-    expose:
-      - "80"
+    networks:
+      - hera
+
+  nginx:
+    image: nginx:latest
+    networks:
+      - hera
+    labels:
+      hera.hostname: mysite.com
+      hera.port: 80
+
+  hera:
+    build: ./tunnel
+    labels:
+      io.balena.features.balena-socket: '1'
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    networks:
+      - hera
+networks:
+  hera:
