@@ -1,4 +1,4 @@
-# PARS EchoLink
+# PiLink
 
 ![BalenaCloud Push](https://github.com/amingilani/pars-echolink/workflows/BalenaCloud%20Push/badge.svg)
 
@@ -6,12 +6,22 @@ This EchoLink Node Configuration is based on the [article](http://www.pakhams.co
 
 Before running, ensure you have [Docker](https://docs.docker.com/get-docker/) installed. This build is meant to be deployed to a balenaOS host, and depends on a host with `ALSA`.
 
-Required variables:
+
+## Services:
+
+`svxlink` is the echolink service, it requires the following to operate:
 
 - `ECHOLINK_CALL`: Echolink callsign
 - `ECHOLINK_PASS`: Echolink password
 - `DEVICE_CALL`: The call sign assigned to this device
 - `AUTH_KEY`: The auth key for the device
+
+`tunnel` is forwards ports out via CloudFlare's Argo. It requires
+
+- `ARGO_HOST`: Argo host
+- `ARGO_KEY`: Argo certificate in base64 generated use `cat cert.pem | base64`
+- `TUNNEL_URL`: The `svxlink` URL you want to forward
+
 
 ## Testing
 
