@@ -1,5 +1,7 @@
 # PiLink
 
+**WIP DO NOT USE**
+
 ![BalenaCloud Push](https://github.com/amingilani/pars-echolink/workflows/BalenaCloud%20Push/badge.svg)
 
 This EchoLink Node Configuration is based on the [article](http://www.pakhams.com/index.php?option=com_content&view=article&id=178:pi3echolink&catid=45:misc&Itemid=158) by AP2CJ.
