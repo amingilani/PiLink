@@ -23,7 +23,7 @@ RUN apt-get install -y alsa-utils
 RUN rm svxlink-sounds-en_US-heather-16k-13.12.tar.bz2
 
 # Install Ruby for templating and lsusb
-RUN apt-get -y install ruby
+RUN apt-get -y install ruby usbutils
 
 # Copy config files
 COPY scripts/compile_config.sh compile_config.sh
