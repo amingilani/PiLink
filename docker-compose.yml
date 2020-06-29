@@ -4,8 +4,7 @@ services:
     build: ./svxlink
     devices:
       - "/dev/snd:/dev/snd"
-    env_file:
-      - ./svxlink-vars.env
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
     expose:
       - "5198"
       - "5199"

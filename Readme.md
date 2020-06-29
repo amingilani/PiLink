@@ -13,6 +13,13 @@ Required variables:
 - `DEVICE_CALL`: The call sign assigned to this device
 - `AUTH_KEY`: The auth key for the device
 
+
+Helpful commands:
+
++ `aplay -l`: to list available sound devices
++ `dmesg | awk '/tty/ && /USB/ {print "/dev/"$10}'|tail -1`: shows the USB device serial cable plugged in
+
+
 ## Testing
 
 Note that during testing you cannot run Balena Cloud environment variables. Pass them through docker compose or your Dockerfile.

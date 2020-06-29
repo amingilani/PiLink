@@ -1,10 +1,6 @@
 # This file containerizes AP2CJ's tutorial
 # http://www.pakhams.com/index.php?option=com_content&view=article&id=178:pi3echolink&catid=45:misc&Itemid=158
 
-# Build the configuration from a template
-FROM ruby
-
-FROM debian:buster
 LABEL maintainer="Amin Shah Gilani <pars@gilani.me>" \
       description="PARS managed Echolink gateway run on Raspberry Pi"
 
@@ -25,8 +21,7 @@ RUN apt-get install -y alsa-utils
 # Remove remaining files
 RUN rm svxlink-sounds-en_US-heather-16k-13.12.tar.bz2
 
-
-# Install Ruby for templating
+# Install Ruby for templating and lsusb
 RUN apt-get -y install ruby
 
 # Copy config files
