@@ -1,6 +1,7 @@
 # This file containerizes AP2CJ's tutorial
 # http://www.pakhams.com/index.php?option=com_content&view=article&id=178:pi3echolink&catid=45:misc&Itemid=158
 
+FROM debian:buster
 LABEL maintainer="Amin Shah Gilani <pars@gilani.me>" \
       description="PARS managed Echolink gateway run on Raspberry Pi"
 
