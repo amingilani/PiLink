@@ -1,4 +1,4 @@
-FROM aschzero/hera:latest
+FROM jakejarvis/cloudflare-argo:latest
 LABEL maintainer="Amin Shah Gilani <pars@gilani.me>" \
       description="PARS managed Echolink gateway run on Raspberry Pi"
 

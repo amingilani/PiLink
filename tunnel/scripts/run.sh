@@ -5,8 +5,10 @@
 [[ -z "$ARGO_HOST" ]] && { echo "ARGO_HOST is not set" ; exit 1; }
 [[ -z "$ARGO_KEY" ]] && { echo "ARGO_KEY is not set" ; exit 1; }
 
-echo $ARGO_KEY | base64 -D > /certs/${ARGO_HOST}.pem
+export TUNNEL_HOSTNAME=$ARGO_HOST
+
+echo $ARGO_KEY | base64 -D > /etc/cloudflared/cert.pem
 
 echo "Successfully compiled config!"
 
-/init
+./cloudflared tunnel
