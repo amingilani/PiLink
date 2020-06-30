@@ -31,4 +31,4 @@ COPY config/ModuleEchoLink.conf.erb ModuleEchoLink.conf.erb
 COPY config/svxlink.conf.erb svxlink.conf.erb
 
 # Execute test
-ENTRYPOINT ./compile_config.sh && svxlink svxlink
+ENTRYPOINT ./compile_config.sh
