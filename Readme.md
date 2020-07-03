@@ -13,6 +13,9 @@ Required variables:
 - `DEVICE_CALL`: The call sign assigned to this device
 - `AUTH_KEY`: The auth key for the device
 
+Optional variables:
+
+- `ENV`: Set this to `dev` to trigger the station to call out its ID every 45 seconds
 
 Helpful commands:
 
