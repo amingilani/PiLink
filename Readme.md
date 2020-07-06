@@ -16,6 +16,7 @@ Required variables:
 Optional variables:
 
 - `ENV`: Set this to `dev` to trigger the station to call out its ID every 45 seconds
+- `TIMEZONE`: Set this to your local time. The default is `PKT`, but you may want `UTC`
 
 Helpful commands:
 

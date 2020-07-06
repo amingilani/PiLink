@@ -8,11 +8,24 @@
 [[ -z "$AUTH_KEY" ]] && { echo "AUTH_KEY is not set" ; exit 1; }
 
 
-# compile config
+# Compile config
 erb /ModuleEchoLink.conf.erb > /etc/svxlink/svxlink.d/ModuleEchoLink.conf && \
     erb /svxlink.conf.erb > /etc/svxlink/svxlink.conf
 
-echo "Successfully compiled config!"
+# Set the appropriate audio levels
+/usr/bin/amixer set 'Capture' 60%
+/usr/bin/amixer set 'Master' 99%
+/usr/bin/amixer set 'PCM' 99%
+/usr/bin/amixer set 'Front' 99%
+
+
+# Default to PKT if no TIMEZONE env variable is set
+echo "Setting time zone to ${TIMEZONE='Asia/Karachi'}"
+echo "${TIMEZONE}" > /etc/timezone
+dpkg-reconfigure --frontend noninteractive tzdata
+
+# Tell everyone you're ready
+echo "PiLink ready!"
 
 # if in development mode, read out ID continuously
 if [[ $ENV == "dev" ]]; then
