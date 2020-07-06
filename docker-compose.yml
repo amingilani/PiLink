@@ -10,7 +10,5 @@ services:
       - "5198:5198/udp"
       - "5199:5199/udp"
       - "5200"
-  web:
-    image: nginxdemos/hello
-    expose:
-      - "80"
+    networks:
+      - host
