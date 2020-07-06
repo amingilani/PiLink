@@ -1,13 +1,14 @@
 version: '2'
 services:
   svxlink:
+    privileged: true
     build: ./svxlink
     devices:
       - "/dev/snd:/dev/snd"
       - "/dev/ttyUSB0:/dev/ttyUSB0"
-    expose:
-      - "5198"
-      - "5199"
+    ports:
+      - "5198:5198/udp"
+      - "5199:5199/udp"
       - "5200"
   web:
     image: nginxdemos/hello
