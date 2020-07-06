@@ -5,6 +5,7 @@ services:
     devices:
       - "/dev/snd:/dev/snd"
       - "/dev/ttyUSB0:/dev/ttyUSB0"
+      - "/dev/-32:/dev/-32"
     expose:
       - "5198"
       - "5199"
