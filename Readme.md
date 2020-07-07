@@ -10,7 +10,6 @@ Required variables:
 
 - `ECHOLINK_CALL`: Echolink callsign
 - `ECHOLINK_PASS`: Echolink password
-- `DEVICE_CALL`: The call sign assigned to this device
 - `AUTH_KEY`: The auth key for the device
 
 Optional variables:
