@@ -12,11 +12,8 @@ erb /ModuleEchoLink.conf.erb > /etc/svxlink/svxlink.d/ModuleEchoLink.conf && \
     erb /svxlink.conf.erb > /etc/svxlink/svxlink.conf
 
 # Set the appropriate audio levels
-/usr/bin/amixer set 'Capture' 60%
-/usr/bin/amixer set 'Master' 99%
-/usr/bin/amixer set 'PCM' 99%
-/usr/bin/amixer set 'Front' 99%
-
+/usr/bin/amixer set 'Mic' 60%
+/usr/bin/amixer set 'Speaker' 99%
 
 # Default to PKT if no TIMEZONE env variable is set
 echo "Setting time zone to ${TIMEZONE='Asia/Karachi'}"
