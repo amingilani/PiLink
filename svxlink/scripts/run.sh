@@ -1,5 +1,15 @@
 #!/bin/bash
-# this script compiles configuration templates into working configs
+###
+### run.sh — This script readies and executes the PARS SvxLink node. You are
+### Not expected to use this script directly. It should be executed via the
+### ENTRYPOINT declarative in the Dockerfile.
+###
+### If $ENV is set to 'dev' then this script will make SvxLink call out its
+### ID every 45 seconds by inputting *#
+###
+### Usage:
+###   ./run.sh
+###
 
 # Checks if the required environment variables are set or raise a bad exit
 [[ -z "$ECHOLINK_CALL" ]] && { echo "ECHOLINK_CALL is not set" ; exit 1; }
@@ -7,7 +17,7 @@
 [[ -z "$AUTH_KEY" ]] && { echo "AUTH_KEY is not set" ; exit 1; }
 
 
-# Compile config
+# Compile config from the ERB template files
 erb /ModuleEchoLink.conf.erb > /etc/svxlink/svxlink.d/ModuleEchoLink.conf && \
     erb /svxlink.conf.erb > /etc/svxlink/svxlink.conf
 
