@@ -3,19 +3,27 @@
 ### run.sh — This script readies and executes the PARS SvxLink node. You are
 ### Not expected to use this script directly. It should be executed via the
 ### ENTRYPOINT declarative in the Dockerfile.
-###
 ### If $ENV is set to 'dev' then this script will make SvxLink call out its
-### ID every 45 seconds by inputting *#
+### ID every 45 seconds by inputting *#.
 ###
 ### Usage:
 ###   ./run.sh
 ###
 
-# Checks if the required environment variables are set or raise a bad exit
+# Check if the required environment variables are set or raise a bad exit
 [[ -z "$ECHOLINK_CALL" ]] && { echo "ECHOLINK_CALL is not set" ; exit 1; }
 [[ -z "$ECHOLINK_PASS" ]] && { echo "ECHOLINK_PASS is not set" ; exit 1; }
 [[ -z "$AUTH_KEY" ]] && { echo "AUTH_KEY is not set" ; exit 1; }
 
+# setup logs
+
+if [[ "$PAPERTRAIL_HOST" ]] && [[ "$PAPERTRAIL_PORT" ]] ; then
+  # Compile log config from the ERB template files and start remote logger
+  erb /log_files.yml.erb > /etc/log_files.yml
+  remote_syslog
+else
+  echo "Skipping log setup. No log configuration found."
+fi
 
 # Compile config from the ERB template files
 erb /ModuleEchoLink.conf.erb > /etc/svxlink/svxlink.d/ModuleEchoLink.conf && \
@@ -44,7 +52,7 @@ if [[ $ENV == "dev" ]]; then
   # Create the pipe
   mkfifo "$PIPE"
   # Start the SvxLink in the background
-  svxlink <"$PIPE" &
+  svxlink --logfile=/var/log/svxlink.log <"$PIPE" &
   # Now grab an open handle to write the pipe
   exec 3>"$PIPE"
   # And we don't need to refer to the pipe by name anymore
@@ -60,5 +68,5 @@ if [[ $ENV == "dev" ]]; then
       sleep 45
   done
 else # if not in development mode, just run svxlink normally
-  svxlink
+  svxlink --logfile=/var/log/svxlink.log
 fi

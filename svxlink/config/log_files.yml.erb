@@ -1,0 +1,6 @@
+files:
+  - /var/log/svxlink.log
+destination:
+  host: <%= ENV['PAPERTRAIL_HOST'] %>
+  port: <%= ENV['PAPERTRAIL_PORT'] %>
+  protocol: tls
