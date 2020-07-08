@@ -52,7 +52,7 @@ if [[ $ENV == "dev" ]]; then
   # Create the pipe
   mkfifo "$PIPE"
   # Start the SvxLink in the background
-  svxlink --logfile=/var/log/svxlink.log <"$PIPE" &
+  svxlink <"$PIPE" &
   # Now grab an open handle to write the pipe
   exec 3>"$PIPE"
   # And we don't need to refer to the pipe by name anymore
@@ -68,5 +68,5 @@ if [[ $ENV == "dev" ]]; then
       sleep 45
   done
 else # if not in development mode, just run svxlink normally
-  svxlink --logfile=/var/log/svxlink.log
+  svxlink
 fi
